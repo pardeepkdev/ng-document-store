@@ -1,1 +1,28 @@
-<p>document-detail works!</p>
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 offset-2">
+      
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <a [routerLink]="['/documents']"> <span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg> Back</span></a>
+        
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          {{document.identifier | titlecase}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"> {{document.name | titlecase}} </h5>
+          <p class="card-text">{{document.description}}</p>
+          <iframe [src]="document.file " style="width: 100%; height: 500px;"></iframe>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<app-footer></app-footer>

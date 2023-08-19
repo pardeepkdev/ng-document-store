@@ -23,12 +23,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-
+            <tr *ngFor="let document of documentsArr; let idx = index">
+              <td>{{idx + 1 }}</td>
+              <td>{{document.identifier}}</td>
+              <td> {{document.name}} </td>
+              <td>
+                <a [routerLink]="['/documents', document.identifier]"> View Details</a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -47,18 +48,11 @@
   </div>
   <form [formGroup]="documentForm" novalidate (ngSubmit)="uploadDocument()" >
     <div class="modal-body">
+      
+        <alert [type]="'success'" *ngIf="uploadedSuccess" [dismissible]="true">Document uploaded successfully!</alert>
+     
         <div class="form-group">
-          <label for="name">Document Name</label>
-          <input type="text" class="form-control" id="name" formControlName="name" 
-          [ngClass]="{
-            'is-invalid':submitted && formErrors['name'].invalid,
-            'is-valid':submitted && formErrors['name'].valid,
-          }">
-
-          <div *ngIf="submitted && formErrors['name'].errors?.['required']" class="invalid-feedback">Please enter document name.</div>
-        </div>
-        <div class="form-group">
-          <label for="description">Document description</label>
+          <label for="description">Description</label>
           <textarea class="form-control" id="description" formControlName="description"
           [ngClass]="{
             'is-invalid':submitted && formErrors['description'].invalid,
@@ -75,7 +69,6 @@
           <div *ngIf="submitted && formErrors['file'].errors?.['required']" class="invalid-feedback">Please select valid document</div>
 
         </div>
-    
     </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Close</button>

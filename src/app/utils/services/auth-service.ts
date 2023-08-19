@@ -8,11 +8,11 @@ import { Auth } from '../typings/Auth';
 })
 export class AuthService {
   private mockCredentials : {
-    username: string;
+    email: string;
     password: string;
     name: string
   } = {
-    username: 'pardeepfedev@gmail.com',
+    email: 'pardeepfedev@gmail.com',
     password: 'Test@123',
     name: 'Pardeep K',
   };

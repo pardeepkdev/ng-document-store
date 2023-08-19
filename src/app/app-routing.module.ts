@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './signin/signin.component';
 import { DocumentComponent } from './document/document.component';
 import { DocumentDetailComponent } from './document-detail/document-detail.component';
+import { DocumentDetailResolver } from './utils/resolvers/document-detail.resolver';
+import { AuthGuard } from './utils/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,10 +14,15 @@ const routes: Routes = [
   {
     path: 'documents',
     component: DocumentComponent,
+    canActivate : [AuthGuard]
   },
   {
-    path: 'document/{docuId}',
+    path: 'documents/:docuId',
     component: DocumentDetailComponent,
+    canActivate : [AuthGuard],
+    resolve : {
+      document : DocumentDetailResolver
+    }
   },
 
   { path: '**', redirectTo: '/' },

@@ -16,6 +16,7 @@ import { SidebarComponent } from './utils/components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FileInputDirective } from './utils/directives/file-input.directive';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FileInputDirective } from './utils/directives/file-input.directive';
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     HttpErrorInterceptorProvider
