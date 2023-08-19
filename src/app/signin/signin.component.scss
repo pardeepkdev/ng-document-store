@@ -1,0 +1,19 @@
+.signIn_page {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 22%,
+    rgba(144, 156, 158, 1) 100%
+  );
+  .signIn-form-container {
+    min-height: 100vh;
+    .signIn-form {
+      padding: 20px;
+      background-color: white;
+      padding: 40px 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+  }
+}
