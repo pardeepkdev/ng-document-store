@@ -28,10 +28,6 @@ export class DocumentComponent {
   ngOnInit() {
     let documents = localStorage.getItem('documentData');
     if(documents) this.documentsArr = JSON.parse(documents);
-
-
-    console.log(this.documentsArr);
-    
   }
 
   openModal(template: TemplateRef<any>) {
@@ -43,7 +39,6 @@ export class DocumentComponent {
     if(this.documentForm.invalid) return;
     const {name, description, file} = this.documentForm.value;
     const storeFile = { name, description, file, identifier : Date.now().toString()}
-    console.log(storeFile);
     this.documentsArr.push(storeFile)
     localStorage.setItem('documentData', JSON.stringify(this.documentsArr));
     this.uploadedSuccess = true;

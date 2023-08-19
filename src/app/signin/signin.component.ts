@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpRequestService } from '../core/services/http-request.service';
 import { Auth } from '../utils/typings/Auth';
-import { AuthApiResponse, User } from '../utils/typings/user';
+import { AuthApiResponse, User } from '../utils/typings/User';
 import { Router } from '@angular/router';
+import { AuthService } from '../utils/services/auth-service';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
-  constructor(private httpRequestService: HttpRequestService, private router : Router) {}
+  constructor(private httpRequestService: HttpRequestService, private router : Router, private authService : AuthService) {
+
+    authService.isLoggedIn() && router.navigate(['/documents'])
+  }
   
   signInForm = new FormGroup<Auth>({
     email: new FormControl(null, [Validators.required, Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
@@ -39,7 +43,11 @@ export class SigninComponent {
           }  
 
           this.authResponse = { type : "success",message : value.message }
-          this.signInForm.reset()
+          this.authResponse = { type : "success",message : `Welcome! You are now logged in. please wait we are redirective you to dashboard ` }
+          this.signInForm.reset();
+          this.submitted = false;
+          value.data && this.authService.setLoggedInUser(value.data);
+          
           setTimeout(() => {
             this.router.navigate(['/documents']);
           }, 1500);

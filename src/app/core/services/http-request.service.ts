@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Subject } from "rxjs";
-import { AuthApiResponse } from "src/app/utils/typings/user";
+import { AuthApiResponse } from "src/app/utils/typings/User";
 const cacheBuster$ = new Subject<void>();
 
 @Injectable({
