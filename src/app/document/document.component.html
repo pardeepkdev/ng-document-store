@@ -23,14 +23,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let document of documentsArr; let idx = index">
-              <td>{{idx + 1 }}</td>
-              <td>{{document.identifier}}</td>
-              <td> {{document.name}} </td>
-              <td>
-                <a [routerLink]="['/documents', document.identifier]"> View Details</a>
-              </td>
-            </tr>
+            <ng-container *ngIf="documentsArr.length; else noRecordBlock">
+              <tr *ngFor="let document of documentsArr; let idx = index">
+                <td>{{idx + 1 }}</td>
+                <td>{{document.identifier}}</td>
+                <td> {{document.name}} </td>
+                <td>
+                  <a [routerLink]="['/documents', document.identifier]"> View Details</a>
+                </td>
+              </tr>
+            </ng-container>
+
+            <ng-template #noRecordBlock>
+              <tr>
+                <td colspan="2"></td>
+                <td colspan="2">No Documents</td>
+              </tr>
+            </ng-template>
           </tbody>
         </table>
       </div>
